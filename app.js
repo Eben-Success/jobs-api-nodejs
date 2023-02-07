@@ -27,3 +27,5 @@ const start = async () => {
     }
 }
 
+start();
+
