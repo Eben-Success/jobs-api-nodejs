@@ -4,15 +4,22 @@ const express = require('express');
 const app = express();
 
 
+// connectDB
+
+// routers
+const authRouter = require('./routes/auth');
+const jobsRouter = require('./routes/jobs');
+
+
+
 // error handlers
 notFoundMiddleware = require('./middleware/not-Found');
 errorHandlerMiddleware = require('./middleware/error-handler');
 
 
 // routes
-app.use('/', (req, res) => {
-    res.send('jobs-api');
-})
+app.use('domain/api/v1/auth', authRouter)
+app.use('domain/api/v1/jobs', jobsRouter)
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
