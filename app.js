@@ -1,16 +1,16 @@
 require('dotenv').config();
-require('express');
+require('http-status-codes');
+
 const express = require('express');
 const app = express();
 
 
 // connectDB
 const connectDB = require('./db/connect');
+
 // routers
 const authRouter = require('./routes/auth');
 const jobsRouter = require('./routes/jobs');
-
-
 
 // error handlers
 const notFoundMiddleware = require('./middleware/not-Found');
@@ -22,8 +22,8 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
 
 
 // routes
-app.use('domain/api/v1/auth', authRouter)
-app.use('domain/api/v1/jobs', jobsRouter)
+app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/jobs', jobsRouter)
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
