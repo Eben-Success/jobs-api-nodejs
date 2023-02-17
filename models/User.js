@@ -10,7 +10,17 @@ const UserSchema = new mongoose.Schema({
     email: {
         type: String,
         required: [true, "Please provide an email"],
-        minlength: 3,
-        maxlength: 255,
-    }
+        match: [
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      'Please provide a valid email',
+        ],
+        unique: true, // create unique index
+    },
+    passord: {
+        type: String,
+        required: [true, "Please provide a password"],
+        minlength: 8,
+    },
 }) 
+
+module.exports = mongoose.model('User', UserSchema);
